@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="observer"
+            type="com.app.videoplayerdemo.ui.player.PlayerActivity.ProgressObserver" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/toolbar_background"
+                android:gravity="center"
+                android:text="@string/music"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_songs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_title"
+            android:layout_centerInParent="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="15"
+            tools:listitem="@layout/layout_songs" />
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorWhite"
+            android:visibility="gone"
+            app:layoutDescription="@xml/youtube_animation"
+            tools:ignore="contentDescription">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_image_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBlack"
+                android:visibility="gone"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/top_image_container"
+                app:layout_constraintEnd_toEndOf="@id/top_image_container"
+                app:layout_constraintStart_toStartOf="@id/top_image_container"
+                app:layout_constraintTop_toTopOf="@id/top_image_container"
+                app:useWebUi="true" />
+
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/exo_player"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:auto_show="false"
+                app:controller_layout_id="@layout/exo_playback_control_view"
+                app:hide_on_touch="true"
+                app:layout_constraintBottom_toTopOf="@+id/top_image_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_image_container"
+                app:show_timeout="4000"
+                app:use_controller="true" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_music"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/ic_music"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/top_image_container"
+                app:layout_constraintEnd_toEndOf="@id/top_image_container"
+                app:layout_constraintStart_toStartOf="@id/top_image_container"
+                app:layout_constraintTop_toTopOf="@id/top_image_container" />
+
+
+            <FrameLayout
+                android:id="@+id/recyclerview_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_image_container" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit_progress"
+                style="@style/SpinKitView.Large.Circle"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:visibility="@{observer.progress?View.VISIBLE:View.GONE}"
+                app:SpinKit_Color="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="@id/top_image_container"
+                app:layout_constraintEnd_toEndOf="@id/top_image_container"
+                app:layout_constraintStart_toStartOf="@id/top_image_container"
+                app:layout_constraintTop_toTopOf="@id/top_image_container" />
+
+            <View
+                android:id="@+id/bottom_nav"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+    </RelativeLayout>
+</layout>

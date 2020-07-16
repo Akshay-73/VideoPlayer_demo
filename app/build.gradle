@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.app.videoplayerdemo"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //androidx
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
+
+    //constraint
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_lay"
+
+    //X lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$life_cycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$life_cycle"
+
+
+//    //recycler
+//    implementation "androidx.recyclerview:recyclerview:$recycler"
+
+    //Dimens
+    implementation "com.intuit.sdp:sdp-android:$sdp"
+
+//    //cardview
+//    implementation "androidx.cardview:cardview:$card_view"
+
+    //google material
+    implementation "com.google.android.material:material:$google_material"
+
+//    //ted image& permission
+//    implementation 'gun0912.ted:tedpermission-rx2:2.2.3'
+//
+//    //RxJava
+//    implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
+//    implementation "io.reactivex.rxjava2:rxjava:$rx_java"
+//
+//    //dagger2
+//    implementation "com.google.dagger:dagger:$dagger"
+//    implementation "com.google.dagger:dagger-android-support:$dagger"
+//    implementation "com.google.dagger:dagger-android:$dagger"
+//    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+//    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger"
+
+    //exo
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.7'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.7'
+
+    //test
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$junit_test"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
+
+    //progress bar
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+
+//    compile files('YouTubeAndroidPlayerApi/YouTubeAndroidPlayerApi.jar')
+
+    //Test you tube view
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
+
+    //Motion layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta7'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'   //4.9.0
+    implementation 'org.apache.commons:commons-io:1.3.2'
+}
